@@ -99,6 +99,12 @@ database.ref("/bidderData").on("value", function(snapshot) {
 });
 
 // --------------------------------------------------------------
+$("#searchA").on("click", function(event) {
+  event.preventDefault();
+  var results = $("#searchId").val();
+  console.log(results);
+})
+
 // Whenever a user clicks the click button
 $("#submit-bid").on("click", function(event) {
   event.preventDefault();
@@ -147,7 +153,7 @@ var APIKey = "b90927458c5fa7e1f7b840215bb8a419";
 var APIId = "128b0839";
 
 // Here we are building the URL we need to query the database
-var queryURL = 'https://api.edamam.com/search?q=pizza&app_id=' + APIId + '&app_key=' + APIKey + '&from=0&to=10&calories=591-722&time=30';
+var queryURL = 'https://api.edamam.com/search?q=' + results + '&app_id=' + APIId + '&app_key=' + APIKey + '&from=0&to=10&calories=591-722&time=30';
 
 
 // Here we run our AJAX call to the EDAMAM API
