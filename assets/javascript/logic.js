@@ -140,3 +140,84 @@ $("#submit-bid").on("click", function(event) {
     alert("Sorry that bid is too low. Try again.");
   }
 });
+
+
+//api connection to EDAMAM for recipes
+var APIKey = "b90927458c5fa7e1f7b840215bb8a419";
+var APIId = "128b0839";
+
+// Here we are building the URL we need to query the database
+var queryURL = 'https://api.edamam.com/search?q=pizza&app_id=' + APIId + '&app_key=' + APIKey + '&from=0&to=10&calories=591-722&time=30';
+
+
+// Here we run our AJAX call to the EDAMAM API
+$.ajax({ 
+  url: queryURL,
+  method: "GET"
+}).then(function (response) {   // We store all of the retrieved data inside of an object called "response"
+  // Log the queryURL
+  console.log(queryURL);
+
+  // Log the resulting object
+  console.log(response);
+  
+  //recipe div holds recipe info
+  var recipeDiv = $("<div class='recipe-display'>");
+
+  // var recipeArray = response.hits;
+
+  //recipe name
+  var name = response.hits[0].recipe.label;
+  $(".card-title").text("Recipe Name: " + name);
+  
+  //Recipe servings
+  var servings = response.hits[0].recipe.yield;
+  var pOne = $("<p>").text("Servings: " + servings); 
+  $(".card-text").append(pOne);
+
+  //Recipe total time
+  var cookTime = response.hits[0].recipe.totalTime;
+  var pTwo = $("<p>").text("Total Time: " + cookTime + " min"); 
+  $(".card-text").append(pTwo);
+  
+  //Recipe Image
+  var imgURL = response.hits[0].recipe.image;
+  $(".card-img-top").attr("src", imgURL);
+
+  var recipeLink = response.hits[0].recipe.url;
+  $("#recipe-btn").attr("href", recipeLink);
+  
+
+  $("#recipe").append(recipeDiv);
+
+});
+
+
+
+// for(var i = 0; i < recipeArray.length; i++){
+  //   var name = response.hits[i].recipe.label;
+  //   var card = $('<div class="card" style="width: 18rem;">');
+
+  //   var imgURL = response.hits[i].recipe.image;
+  //   var image = $('<img class="card-image-top>').attr("src", imgURL);
+  //   card.append(image);
+
+  //   var cardBody = $('<div class="card-body">');
+  //   card.append(cardBody);
+
+  //   var cardTitle = $('<h5 class="card-title">');
+  //   var name = response.hits[i].recipe.label;
+  //   $(".card-title").text("Recipe Name: " + name);
+  //   cardBody.append(cardTitle);
+
+  //   var pCookTime = $('<p class="card-text">');
+  //   var cookTime = response.hits[i].recipe.totalTime;
+  //   $(".card-text").text("Total Time: " + cookTime + " min");
+  //   cardBody.append(pCookTime);
+
+  //   pServings = $('<p class="card-text">');
+  //   var servings = response.hits[i].recipe.yield;
+  //   $(".card-text").text("Servings: " + servings);
+  //   cardBody.append(pServings);
+
+  // }
