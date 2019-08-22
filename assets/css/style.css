@@ -1,0 +1,50 @@
+button,
+input {
+    margin: 10px;
+}
+
+#header {
+    text-align: center;
+    border-color: blue;
+    border-style: double;
+    background-color: aqua;
+}
+
+#searchResults {
+    clear: both;
+}
+
+#movie-form {
+    text-align: center;
+    border-color: blue;
+    border-style: double;
+    background-color: aqua;
+}
+
+#yourFavs {
+    margin: 15px;
+    float: left;
+    width: 10%;
+    text-align: left;
+    border-color: blue;
+    border-style: double;
+    background-color: aqua;
+}
+
+#results1 {
+    margin: 5px;
+    float: left;
+    width: 40%;
+    border-color: blue;
+    border-style: double;
+    background-color: aqua;
+}
+
+#results2 {
+    margin: 5px;
+    float: left;
+    width: 40%;
+    border-color: blue;
+    border-style: double;
+    background-color: aqua;
+}
