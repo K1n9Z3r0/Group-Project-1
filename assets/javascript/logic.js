@@ -1,3 +1,11 @@
+/* EDAMAM API */
+//api connection to EDAMAM for recipes
+var APIKey = "b90927458c5fa7e1f7b840215bb8a419";
+var APIId = "128b0839";
+var queryURL;
+var results;
+
+
 /* global moment firebase */
 
 // Initialize Firebase
@@ -32,7 +40,7 @@ var connectionsRef = database.ref("/connections");
 var connectedRef = database.ref(".info/connected");
 
 // When the client's connection state changes...
-connectedRef.on("value", function(snap) {
+connectedRef.on("value", function (snap) {
 
     // If they are connected..
     if (snap.val()) {
@@ -45,158 +53,111 @@ connectedRef.on("value", function(snap) {
 });
 
 // When first loaded or when the connections list changes...
-connectionsRef.on("value", function(snap) {
+connectionsRef.on("value", function (snap) {
 
     // Display the viewer count in the html.
     // The number of online users is the number of children in the connections list.
     $("#connected-viewers").text(snap.numChildren());
 });
 
-// ------------------------------------
-// Initial Values
-var initialBid = 0;
-var initialBidder = "No one :-(";
-var highPrice = initialBid;
-var highBidder = initialBidder;
-
 // --------------------------------------------------------------
-// At the page load and subsequent value changes, get a snapshot of the local data.
-// This function allows you to update your page in real-time when the values within the firebase node bidderData changes
-database.ref("/bidderData").on("value", function(snapshot) {
-
-    // If Firebase has a highPrice and highBidder stored (first case)
-    if (snapshot.child("highBidder").exists() && snapshot.child("highPrice").exists()) {
-
-        // Set the local variables for highBidder equal to the stored values in firebase.
-        highBidder = snapshot.val().highBidder;
-        highPrice = parseInt(snapshot.val().highPrice);
-
-        // change the HTML to reflect the newly updated local values (most recent information from firebase)
-        $("#highest-bidder").text(snapshot.val().highBidder);
-        $("#highest-price").text("$" + snapshot.val().highPrice);
-
-        // Print the local data to the console.
-        console.log(snapshot.val().highBidder);
-        console.log(snapshot.val().highPrice);
-    }
-
-    // Else Firebase doesn't have a highPrice/highBidder, so use the initial local values.
-    else {
-
-        // Change the HTML to reflect the local value in firebase
-        $("#highest-bidder").text(highBidder);
-        $("#highest-price").text("$" + highPrice);
-
-        // Print the local data to the console.
-        console.log("local High Price");
-        console.log(highBidder);
-        console.log(highPrice);
-    }
-
-    // If any errors are experienced, log them to console.
-}, function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-});
-
-// --------------------------------------------------------------
-$("#searchA").on("click", function(event) {
-  event.preventDefault();
-  var results = $("#searchId").val();
-  console.log(results);
-})
-
-// Whenever a user clicks the click button
-$("#submit-bid").on("click", function(event) {
+$("#searchA").on("click", function (event) {
     event.preventDefault();
-
-    // Get the input values
-    var bidderName = $("#bidder-name").val().trim();
-    var bidderPrice = parseInt($("#bidder-price").val().trim());
-
-    // Log the Bidder and Price (Even if not the highest)
-    console.log(bidderName);
-    console.log(bidderPrice);
-
-    if (bidderPrice > highPrice) {
-
-        // Alert
-        alert("You are now the highest bidder.");
-
-        // Save the new price in Firebase
-        database.ref("/bidderData").set({
-            highBidder: bidderName,
-            highPrice: bidderPrice
-        });
-
-        // Log the new High Price
-        console.log("New High Price!");
-        console.log(bidderName);
-        console.log(bidderPrice);
-
-        // Store the new high price and bidder name as a local variable (could have also used the Firebase variable)
-        highBidder = bidderName;
-        highPrice = parseInt(bidderPrice);
-
-        // Change the HTML to reflect the new high price and bidder
-        $("#highest-bidder").text(bidderName);
-        $("#highest-price").text("$" + bidderPrice);
-    } else {
-
-        // Alert
-        alert("Sorry that bid is too low. Try again.");
-    }
+    results = $("#searchId").val();
+    queryURL = 'https://api.edamam.com/search?q=' + results + '&app_id=' + APIId + '&app_key=' + APIKey + '&from=0&to=10&calories=591-722&time=30';
+    console.log("search: " + results);
+    ajaxSearch();
 });
 
 
-//api connection to EDAMAM for recipes
-var APIKey = "b90927458c5fa7e1f7b840215bb8a419";
-var APIId = "128b0839";
+// the ajaxSearch function
+function ajaxSearch() {
+    // Here we run our AJAX call to the EDAMAM API
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) { // We store all of the retrieved data inside of an object called "response"
 
-// Here we are building the URL we need to query the database
-var queryURL = 'https://api.edamam.com/search?q=' + results + '&app_id=' + APIId + '&app_key=' + APIKey + '&from=0&to=10&calories=591-722&time=30';
+        // Log the queryURL
+        console.log(queryURL);
 
+        // Log the resulting object
+        console.log(response);
 
-// Here we run our AJAX call to the EDAMAM API
-$.ajax({
-    url: queryURL,
-    method: "GET"
-}).then(function(response) { // We store all of the retrieved data inside of an object called "response"
-    // Log the queryURL
-    console.log(queryURL);
+        //recipe div holds recipe info
+        var recipeDiv = $("<div class='recipe-display'>");
 
-    // Log the resulting object
-    console.log(response);
+        var recipeArray = response.hits;
 
-    //recipe div holds recipe info
-    var recipeDiv = $("<div class='recipe-display'>");
+        /* Old code for single search result */
+        // //recipe name
+        // var name = response.hits[0].recipe.label;
+        // $(".card-title").text("Recipe Name: " + name);
 
-    // var recipeArray = response.hits;
+        // //Recipe servings
+        // var servings = response.hits[0].recipe.yield;
+        // var pOne = $("<p>").text("Servings: " + servings);
+        // $(".card-text").append(pOne);
 
-    //recipe name
-    var name = response.hits[0].recipe.label;
-    $(".card-title").text("Recipe Name: " + name);
+        // //Recipe total time
+        // var cookTime = response.hits[0].recipe.totalTime;
+        // var pTwo = $("<p>").text("Total Time: " + cookTime + " min");
+        // $(".card-text").append(pTwo);
 
-    //Recipe servings
-    var servings = response.hits[0].recipe.yield;
-    var pOne = $("<p>").text("Servings: " + servings);
-    $(".card-text").append(pOne);
+        // //Recipe Image
+        // var imgURL = response.hits[0].recipe.image;
+        // $(".card-img-top").attr("src", imgURL);
 
-    //Recipe total time
-    var cookTime = response.hits[0].recipe.totalTime;
-    var pTwo = $("<p>").text("Total Time: " + cookTime + " min");
-    $(".card-text").append(pTwo);
+        // var recipeLink = response.hits[0].recipe.url;
+        // $("#recipe-btn").attr("href", recipeLink);
 
-    //Recipe Image
-    var imgURL = response.hits[0].recipe.image;
-    $(".card-img-top").attr("src", imgURL);
-
-    var recipeLink = response.hits[0].recipe.url;
-    $("#recipe-btn").attr("href", recipeLink);
+        // $("#recipe1").append(recipeDiv);
 
 
-    $("#recipe1").append(recipeDiv);
+        /* New code for all search results */
+        for(var i = 0; i < recipeArray.length; i++){
 
-});
+            // Recipe name
+            var name = response.hits[i].recipe.label;
+
+            // Recipe URL
+            var recipeLink = response.hits[i].recipe.url;
+
+            // Recipe servings
+            var servings = response.hits[i].recipe.yield;
+
+            // Recipe total time
+            var cookTime = response.hits[i].recipe.totalTime;
+
+            // Recipe Image
+            var imgURL = response.hits[i].recipe.image;
+
+            
+            // recipeDiv.append('<div class="card" style="width: 18rem;">');
+            // recipeDiv.append('<img src="'+imgURL+'" class="card-img-top" alt="...">');
+            // recipeDiv.append('<div class="card-body">');
+            // recipeDiv.append('<h5 class="card-title">'+name+'</h5>');
+            // recipeDiv.append('<p class="card-text">Servings: '+servings+'</p>');
+            // recipeDiv.append('<p class="card-text">Total Time: '+cookTime+'</p>');
+            // recipeDiv.append('<a href="'+recipeLink+'" class="btn btn-primary" id="recipe-btn">Go to Recipe</a>');
+
+            // var recipeDiv = $("<div id='recipe"+i+"'>");
+
+            var newElementString = "";
+            newElementString += '<div class="recipeBox" id="recipe'+i+'">';
+            newElementString += '<div class="card" style="width: 18rem;">';
+            newElementString += '<img src="'+imgURL+'" class="card-img-top" alt="...">';
+            newElementString += '<div class="card-body">';
+            newElementString += '<h5 class="card-title">'+name+'</h5>';
+            newElementString += '<p class="card-text">Servings: '+servings+'</p>';
+            newElementString += '<p class="card-text">Total Time: '+cookTime+'</p>';
+            newElementString += '<a href="'+recipeLink+'" class="btn btn-primary" id="recipe-btn">Go to Recipe</a>';
+
+            var recipeDiv = $(newElementString);
+            $("#searchResultsBox").append(recipeDiv);          
+          }
+    });
+}
 
 
 
