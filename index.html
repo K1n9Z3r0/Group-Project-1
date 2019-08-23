@@ -4,111 +4,82 @@
 
 <head>
 
-  <meta charset="UTF-8">
-  <title>CoderBay</title>
+    <meta charset="UTF-8">
+    <title>CoderBay</title>
 
-  <!-- jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  <!-- Bootstrap CDN-->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Bootstrap CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-  <!-- Firebase References -->
-  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <!-- Firebase References -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
-  <div class="container">
-
-    <br>
-
-    <!-- Jumbotron Title -->
     <div class="jumbotron">
-      <h1 class="text-center">The CookBook</h1>
-      <h3 class="text-center">"Your Own Personal Meal Helper"</h3>
+        <h1 class="text-center">The CookBook</h1>
+        <h3 class="text-center">"Your Own Personal Meal Helper"</h3>
     </div>
 
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card card-default">
-          <div class="card-body">
-            <h3 class="text-center">
-              <strong>Quick & Easy Meals</strong>:If you're not sure what to cook for yourself and family,
-              The Cookbook is here to help!These super easy recipes are here to help you get you and your family fed in
-              30 minutes or less. We have recipes for every craving including rotisseries chicken reuses, sheet
-              pan meals, and amazing comfort foods like Mac and Cheese. </h3>
-          </div>
+    <div class="d-flex justify-content-center">
+        <div class="col-lg-6">
+            <div class="card card-default">
+                <div class="card-body">
+                    <h5 class="text-center">
+                        <strong>Quick &amp; Easy Meals</strong>: If you're not sure what to cook for yourself
+                        and family, The Cookbook is here to help!These super easy recipes are here to help you get you
+                        and your family
+                        fed within 30 minutes.We have recipes for every craving including rotisseries chicken reuses,
+                        sheet pan meals, and amazing comfort foods like Mac and Cheese.</h5>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  <!-- Current Product -->
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card card-default">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-sm-4 col-sm-offset-2">
-              <img class="img-fluid thumbnail center-block"
-                src="http://graphitepublications.com/wp-content/uploads/2015/04/5-Coding-Challenges-to-Help-You-Train-Your-Brain.jpg"
-                alt="Coding Brain">
+    <nav class="navbar navbar-light bg-light">
+        <button type="button" class="btn btn-primary">Home</button>
+        <form class="form-inline">
+            <button class="btn btn-outline-success my-2 my-sm-0" id="searchA" type="submit">Search</button>
+            <input class="form-control mr-sm-2" type="search" id="searchId" placeholder="Search food recipes..."
+                aria-label="Search">
+        </form>
+    </nav>
+    <hr>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm">
+                <div class="columnStyling">Most commonly searched recipes</div>
             </div>
-            <div class="col-sm-6">
-              <h3 class="">
-                <strong>Highest Bidder:</strong>
-                <span id="highest-bidder"></span>
-              </h3>
-              <h3 class="">
-                <strong>Current Price:</strong>
-                <span id="highest-price"></span>
-              </h3>
-              <hr>
-              <h3 class="">Hurry!
-                <strong>
-                  <span id="connected-viewers"></span>
-                </strong> people have their eyes on the prize.</h3>
+            <div class="col-sm">
+                <div class="columnStyling">Search Result</div>
             </div>
-          </div>
+            <div class="col-sm">
+                <div class="columnStyling">Search Result</div>
+            </div>
+            <div class="col-sm">
+                <div class="columnStyling">Search Result</div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  </div>
 
-  <!-- Make Your Bid -->
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card card-default">
-        <div class="card-header">
-          Make Your Bid
-        </div>
-        <div class="card-body">
-          <form>
-            <div class="form-group row">
-              <label for="bidder-name">Your Name</label>
-              <input class="form-control" id="bidder-name" type="text">
-            </div>
-            <div class="form-group row">
-              <label for="bidder-price">Your Price</label>
-              <input class="form-control" id="bidder-price" type="number">
-            </div>
-            <button class="btn btn-primary" id="submit-bid" type="submit">Submit</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
+    <footer class="blog-footer fixed-bottom" style="margin:0 auto;text-align:center;background:rgba(0,0,0,0.3);">
+        <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a
+                href="https://twitter.com/mdo">@mdo</a>.</p>
+        <p>
+            <a href="#">Back to top</a>
+        </p>
+    </footer>
 
-  </div>
-
-  <!-- Script -->
-  <script src="assets/javascript/logic.js"></script>
+    <!-- Script -->
+    <script src="assets/javascript/logic.js"></script>
 
 </body>
 
