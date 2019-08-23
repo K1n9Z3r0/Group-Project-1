@@ -1,6 +1,8 @@
-button,
-input {
-    margin: 10px;
+body {
+    background-image: url("../images/Background.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-color: #cccccc;
 }
 
 #header {
@@ -21,23 +23,22 @@ input {
     background-color: aqua;
 }
 
-#yourFavs {
+#miscBox {
     margin: 15px;
     float: left;
-    width: 10%;
+    width: 20%;
     text-align: left;
     border-color: blue;
     border-style: double;
     background-color: aqua;
 }
 
-#results1 {
+#recipe1 {
     margin: 5px;
     float: left;
     width: 40%;
     border-color: blue;
     border-style: double;
-    background-color: aqua;
 }
 
 #results2 {
