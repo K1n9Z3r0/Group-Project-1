@@ -5,7 +5,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>CoderBay</title>
+    <title>The Cookbook</title>
 
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -15,8 +15,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <!-- Firebase References -->
-    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-database.js"></script>
 
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -24,151 +24,47 @@
 <body>
 
 
-    <h1 id="header">The Cook Book</h1>
-    <div id="searchResults">
-        <!-- ======================================================================= -->
+    <div class="jumbotron text-white">
+        <h1 class="text-center">The CookBook</h1>
+        <h3 class="text-center">"Your Own Personal Meal Helper"</h3>
+    </div>
 
-        <nav class="navbar navbar-light bg-light">
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" id="searchId" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" id="searchA" type="submit">Search</button>
-            </form>
-        </nav>
-        <!-- =================================================================== -->
+    <div id="recent-Search"></div>
 
-        <!-- Rendered Buttons will get Dumped Here  -->
-        <div id="miscBox">Reults form the first api will go here.
-        </div>
-
-        <!-- Rendered Buttons will get Dumped Here  -->
-        <!-- Recipe Card container -->
-        <div class="col-sm-8">
-            <div id="recipe1">
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text"></p>
-                        <a href="" class="btn btn-primary" id="recipe-btn">Go to Recipe</a>
-                    </div>
+    <div id="greetingBox" class="d-flex justify-content-center">
+        <div class="col-lg-6">
+            <div class="card card-default">
+                <div class="card-body">
+                    <h5 class="text-center">
+                        <strong>Quick &amp; Easy Meals</strong>: If you're not sure what to cook for yourself and family, The Cookbook is here to help!These super easy recipes are here to help you get you and your family fed within 30 minutes.We have
+                        recipes for every craving including rotisseries chicken reuses, sheet pan meals, and amazing comfort foods like Mac and Cheese.</h5>
                 </div>
             </div>
+        </div> -->
+    </div>
+
+    <nav class="navbar navbar-light" id="navbar">
+        <button type="button" class="btn btn-primary">Home</button>
+        <form class="form-inline">
+            <button class="btn btn-outline-success my-2 my-sm-0" id="searchA" type="submit">Search</button>
+            <input class="form-control mr-sm-2" type="search" id="searchId" placeholder="Search food recipes..." aria-label="Search">
+        </form>
+    </nav>
+    <hr>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div id="searchResultsBox"></div>
         </div>
     </div>
-    </div>
 
-    <!-- Rendered Buttons will get Dumped Here  -->
-    <div id="results2">Reults form the second api will go here.
-    </div>
-    <!-- Movies will Get Dumped Here -->
-    <div id="movies-view">
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript">
-            // Initial array of movies
-            var movies = ["Your favorites will go here"];
-
-            // displayMovieInfo function re-renders the HTML to display the appropriate content
-            function displayMovieInfo() {
-
-                var movie = $(this).attr("data-name");
-                var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
-
-                // Creating an AJAX call for the specific movie button being clicked
-                $.ajax({
-                    url: queryURL,
-                    method: "GET"
-                }).then(function(response) {
-
-                    // Creating a div to hold the movie
-                    var movieDiv = $("<div class='movie'>");
-
-                    // Storing the rating data
-                    var rating = response.Rated;
-
-                    // Creating an element to have the rating displayed
-                    var pOne = $("<p>").text("Rating: " + rating);
-
-                    // Displaying the rating
-                    movieDiv.append(pOne);
-
-                    // Storing the release year
-                    var released = response.Released;
-
-                    // Creating an element to hold the release year
-                    var pTwo = $("<p>").text("Released: " + released);
-
-                    // Displaying the release year
-                    movieDiv.append(pTwo);
-
-                    // Storing the plot
-                    var plot = response.Plot;
-
-                    // Creating an element to hold the plot
-                    var pThree = $("<p>").text("Plot: " + plot);
-
-                    // Appending the plot
-                    movieDiv.append(pThree);
-
-                    // Retrieving the URL for the image
-                    var imgURL = response.Poster;
-
-                    // Creating an element to hold the image
-                    var image = $("<img>").attr("src", imgURL);
-
-                    // Appending the image
-                    movieDiv.append(image);
-
-                    // Putting the entire movie above the previous movies
-                    $("#movies-view").prepend(movieDiv);
-                });
-
-            }
-
-            // Function for displaying movie data
-            function renderButtons() {
-
-                // Deleting the movies prior to adding new movies
-                // (this is necessary otherwise you will have repeat buttons)
-                $("#yourFavs").empty();
-
-                // Looping through the array of movies
-                for (var i = 0; i < movies.length; i++) {
-
-                    // Then dynamicaly generating buttons for each movie in the array
-                    // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
-                    var a = $("<button>");
-                    // Adding a class of movie-btn to our button
-                    a.addClass("movie-btn");
-                    // Adding a data-attribute
-                    a.attr("data-name", movies[i]);
-                    // Providing the initial button text
-                    a.text(movies[i]);
-                    // Adding the button to the yourFavs div
-                    $("#yourFavs").append(a);
-                }
-            }
-
-            // This function handles events where a movie button is clicked
-            $("#your-favs").on("click", function(event) {
-                event.preventDefault();
-                // This line grabs the input from the textbox
-                var movie = $("#movie-input").val().trim();
-
-                // Adding movie from the textbox to our array
-                movies.push(movie);
-
-                // Calling renderButtons which handles the processing of our movie array
-                renderButtons();
-            });
-
-            // Adding a click event listener to all elements with a class of "movie-btn"
-            $(document).on("click", ".movie-btn", displayMovieInfo);
-
-            // Calling the renderButtons function to display the intial buttons
-            renderButtons();
-        </script>
-    </div>
+    <footer class="footer fixed-bottom text-white" style="margin:0 auto;text-align:center;background:rgba(0,0,0,0.3);">
+        <p>Page made using <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a> and <a href="https://developer.edamam.com/edamam-docs-recipe-api">EDAMAM API</a>.</p>
+        <p>
+            <a href="#">Back to top</a>
+        </p>
+    </footer>
 
 
     <!-- Script -->
