@@ -24,7 +24,7 @@
 <body>
 
 
-    <div class="jumbotron">
+    <div class="jumbotron text-white">
         <h1 class="text-center">The CookBook</h1>
         <h3 class="text-center">"Your Own Personal Meal Helper"</h3>
     </div>
@@ -41,13 +41,13 @@
                         sheet pan meals, and amazing comfort foods like Mac and Cheese.</h5>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light" id="navbar">
         <button type="button" class="btn btn-primary">Home</button>
         <form class="form-inline">
-            <button class="btn btn-outline-success my-2 my-sm-0" id="searchA" type="submit">Search</button>
+            <button class="btn btn-outline-success m-2 my-sm-0" id="searchA" type="submit">Search</button>
             <input class="form-control mr-sm-2" type="search" id="searchId" placeholder="Search food recipes..."
                 aria-label="Search">
         </form>
@@ -57,56 +57,17 @@
     <div class="container-fluid">
         <div class="row">
             <div id="searchResultsBox"></div>
-            <!-- <div class="col-sm">
-                <div class="columnStyling">Most commonly searched recipes</div>
-            </div>
-            <div class="col-sm">
-                <div id="recipe1">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text"></p>
-                            <a href="" class="btn btn-primary" id="recipe-btn">Go to Recipe</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm">
-                <div id="recipe2">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text"></p>
-                            <a href="" class="btn btn-primary" id="recipe-btn">Go to Recipe</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm">
-                <div id="recipe3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text"></p>
-                            <a href="" class="btn btn-primary" id="recipe-btn">Go to Recipe</a>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 
-    <footer class="footer" style="margin:0 auto;text-align:center;background:rgba(0,0,0,0.3);">
+    <footer class="footer fixed-bottom text-white" style="margin:0 auto;text-align:center;background:rgba(0,0,0,0.3);">
         <p>Page made using <a href="https://getbootstrap.com/">Bootstrap</a> by <a
                 href="https://twitter.com/mdo">@mdo</a> and <a href="https://developer.edamam.com/edamam-docs-recipe-api">EDAMAM API</a>.</p>
         <p>
             <a href="#">Back to top</a>
         </p>
     </footer>
-
+    
 
     <!-- Script -->
     <script src="assets/javascript/logic.js"></script>
