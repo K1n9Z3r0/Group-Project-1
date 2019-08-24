@@ -1,9 +1,9 @@
 body {
     /* background-image: url("../images/Background.jpeg"); */
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: cover;
     background-color: #cccccc;
-
+    margin-bottom: 100px;
     background: 
     /* top, transparent red, faked with gradient */ 
     linear-gradient(
@@ -18,7 +18,66 @@ a {
     color: lightgreen;
 }
 
+.jumbotron  {
+    background-color:rgba(41, 36, 36, 0.486);
+}  
+
+#navbar {
+    background-color:rgba(41, 36, 36, 0.486);
+}
 .recipeBox {
     display:inline-block;
     padding: 20px;
+    background-attachment:fixed;
+}
+
+#header {
+    color: white;
+    text-align: center;
+    border-color:grey;
+    border-style: double;
+    background-color:rgb(7, 6, 6, 0.75);
+}
+
+#searchResults {
+    clear: both;
+}
+
+#movie-form {
+    text-align: center;
+    border-color: blue;
+    border-style: double;
+    background-color:rgb(7, 6, 6, 0.75);
+}
+
+
+}
+#miscBox {
+    color: grey;
+    margin: 15px;
+    float: left;
+    width: 20%;
+    text-align: left;
+    border-color: grey;
+    border-style: double;
+    background-color:rgb(7, 6, 6, 0.75);
+}
+
+   
+
+#results2 {
+    color: grey;
+    margin: 5px;
+    float: left;
+    width: 40%;
+    border-color: grey;
+    border-style: double;
+    background-color:rgb(7, 6, 6, 0.75);
+}
+
+#footer {
+    color: white;
+    text-align: center;
+    border-color: grey;
+    background-color:rgb(7, 6, 6, 0.75);
 }

@@ -60,6 +60,24 @@ connectionsRef.on("value", function (snap) {
     $("#connected-viewers").text(snap.numChildren());
 });
 
+
+searchArray = [];
+
+function addSearch(){
+    results = $("#searchId").val();
+    for (var i = 0; i < searchArray.length; i++){
+        if(results !== searchArray[i]){
+            searchArray.push(results);
+
+        }
+    }
+}
+
+var searchResults = {
+    name: results,
+    count: 0
+}
+
 // --------------------------------------------------------------
 $("#searchA").on("click", function (event) {
     event.preventDefault();
@@ -77,7 +95,6 @@ function ajaxSearch() {
         url: queryURL,
         method: "GET"
     }).then(function (response) { // We store all of the retrieved data inside of an object called "response"
-
         // Log the queryURL
         console.log(queryURL);
 
@@ -129,6 +146,10 @@ function ajaxSearch() {
             // Recipe total time
             var cookTime = response.hits[i].recipe.totalTime;
 
+            if(cookTime === 0){
+                cookTime = "N/A";
+            }
+
             // Recipe Image
             var imgURL = response.hits[i].recipe.image;
 
@@ -154,37 +175,9 @@ function ajaxSearch() {
             newElementString += '<a href="'+recipeLink+'" class="btn btn-primary" id="recipe-btn">Go to Recipe</a>';
 
             var recipeDiv = $(newElementString);
-            $("#searchResultsBox").append(recipeDiv);          
+            $("#searchResultsBox").prepend  (recipeDiv);          
           }
     });
 }
 
 
-
-// for(var i = 0; i < recipeArray.length; i++){
-//   var name = response.hits[i].recipe.label;
-//   var card = $('<div class="card" style="width: 18rem;">');
-
-//   var imgURL = response.hits[i].recipe.image;
-//   var image = $('<img class="card-image-top>').attr("src", imgURL);
-//   card.append(image);
-
-//   var cardBody = $('<div class="card-body">');
-//   card.append(cardBody);
-
-//   var cardTitle = $('<h5 class="card-title">');
-//   var name = response.hits[i].recipe.label;
-//   $(".card-title").text("Recipe Name: " + name);
-//   cardBody.append(cardTitle);
-
-//   var pCookTime = $('<p class="card-text">');
-//   var cookTime = response.hits[i].recipe.totalTime;
-//   $(".card-text").text("Total Time: " + cookTime + " min");
-//   cardBody.append(pCookTime);
-
-//   pServings = $('<p class="card-text">');
-//   var servings = response.hits[i].recipe.yield;
-//   $(".card-text").text("Servings: " + servings);
-//   cardBody.append(pServings);
-
-// }
