@@ -79,14 +79,20 @@ var searchResults = {
 }
 
 // --------------------------------------------------------------
+// Search button
 $("#searchA").on("click", function (event) {
     event.preventDefault();
     results = $("#searchId").val();
-    queryURL = 'https://api.edamam.com/search?q=' + results + '&app_id=' + APIId + '&app_key=' + APIKey + '&from=0&to=10&calories=591-722&time=30';
+    queryURL = 'https://api.edamam.com/search?q=' + results + '&app_id=' + APIId + '&app_key=' + APIKey + '&from=0&to=2&calories=591-722&time=30';
     console.log("search: " + results);
     ajaxSearch();
+    $("#introDiv").empty();
 });
 
+// Reset Search results button
+$("#reset").on("click", function (event) {
+    $("#searchResultsBox").empty();
+});
 
 // the ajaxSearch function
 function ajaxSearch() {
@@ -106,31 +112,7 @@ function ajaxSearch() {
 
         var recipeArray = response.hits;
 
-        /* Old code for single search result */
-        // //recipe name
-        // var name = response.hits[0].recipe.label;
-        // $(".card-title").text("Recipe Name: " + name);
-
-        // //Recipe servings
-        // var servings = response.hits[0].recipe.yield;
-        // var pOne = $("<p>").text("Servings: " + servings);
-        // $(".card-text").append(pOne);
-
-        // //Recipe total time
-        // var cookTime = response.hits[0].recipe.totalTime;
-        // var pTwo = $("<p>").text("Total Time: " + cookTime + " min");
-        // $(".card-text").append(pTwo);
-
-        // //Recipe Image
-        // var imgURL = response.hits[0].recipe.image;
-        // $(".card-img-top").attr("src", imgURL);
-
-        // var recipeLink = response.hits[0].recipe.url;
-        // $("#recipe-btn").attr("href", recipeLink);
-
-        // $("#recipe1").append(recipeDiv);
-
-
+       
         /* New code for all search results */
         for(var i = 0; i < recipeArray.length; i++){
 
@@ -152,17 +134,7 @@ function ajaxSearch() {
 
             // Recipe Image
             var imgURL = response.hits[i].recipe.image;
-
             
-            // recipeDiv.append('<div class="card" style="width: 18rem;">');
-            // recipeDiv.append('<img src="'+imgURL+'" class="card-img-top" alt="...">');
-            // recipeDiv.append('<div class="card-body">');
-            // recipeDiv.append('<h5 class="card-title">'+name+'</h5>');
-            // recipeDiv.append('<p class="card-text">Servings: '+servings+'</p>');
-            // recipeDiv.append('<p class="card-text">Total Time: '+cookTime+'</p>');
-            // recipeDiv.append('<a href="'+recipeLink+'" class="btn btn-primary" id="recipe-btn">Go to Recipe</a>');
-
-            // var recipeDiv = $("<div id='recipe"+i+"'>");
 
             var newElementString = "";
             newElementString += '<div class="recipeBox" id="recipe'+i+'">';
@@ -172,10 +144,10 @@ function ajaxSearch() {
             newElementString += '<h5 class="card-title">'+name+'</h5>';
             newElementString += '<p class="card-text">Servings: '+servings+'</p>';
             newElementString += '<p class="card-text">Total Time: '+cookTime+'</p>';
-            newElementString += '<a href="'+recipeLink+'" class="btn btn-primary" id="recipe-btn">Go to Recipe</a>';
+            newElementString += '<a class="btn btn-primary" href="' + recipeLink + '" target="_blank" id="recipe-btn">Go to Recipe</a>';
 
             var recipeDiv = $(newElementString);
-            $("#searchResultsBox").prepend  (recipeDiv);          
+            $("#searchResultsBox").prepend(recipeDiv);          
           }
     });
 }

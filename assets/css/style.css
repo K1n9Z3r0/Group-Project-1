@@ -22,6 +22,9 @@ a {
     background-color:rgba(41, 36, 36, 0.486);
 }  
 
+#intro  {
+    background-color:rgba(41, 36, 36, 0.486);
+}
 #navbar {
     background-color:rgba(41, 36, 36, 0.486);
 }
@@ -51,7 +54,7 @@ a {
 }
 
 
-}
+
 #miscBox {
     color: grey;
     margin: 15px;
