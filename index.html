@@ -5,7 +5,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>CoderBay</title>
+    <title>The Cookbook</title>
 
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -15,8 +15,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <!-- Firebase References -->
-    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-database.js"></script>
 
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -33,12 +33,9 @@
         <div class="col-lg-6">
             <div class="card card-default text-white" id="intro">
                 <div class="card-body">
-                    <h5 class="text-center" >
-                        <strong>Quick &amp; Easy Meals</strong>: If you're not sure what to cook for yourself
-                        and family, The Cookbook is here to help!These super easy recipes are here to help you get you
-                        and your family
-                        fed within 30 minutes.We have recipes for every craving including rotisseries chicken reuses,
-                        sheet pan meals, and amazing comfort foods like Mac and Cheese.</h5>
+                    <h5 class="text-center">
+                        <strong>Quick &amp; Easy Meals</strong>: If you're not sure what to cook for yourself and family, The Cookbook is here to help!These super easy recipes are here to help you get you and your family fed within 30 minutes.We have
+                        recipes for every craving including rotisseries chicken reuses, sheet pan meals, and amazing comfort foods like Mac and Cheese.</h5>
                 </div>
             </div>
         </div> -->
@@ -47,9 +44,10 @@
     <nav class="navbar navbar-light" id="navbar">
         <button type="button" class="btn btn-primary" id="reset">Reset Search</button>
         <form class="form-inline">
+            <p id="recentText">most recent search</p>
+            <button type="button" class="btn btn-primary" id="recentSearch"></button>
             <button class="btn btn-outline-success m-2 my-sm-0" id="searchA" type="submit">Search</button>
-            <input class="form-control mr-sm-2" type="search" id="searchId" placeholder="Search food recipes..."
-                aria-label="Search">
+            <input class="form-control mr-sm-2" type="search" id="searchId" placeholder="Search food recipes..." aria-label="Search">
         </form>
     </nav>
     <hr>
@@ -61,13 +59,12 @@
     </div>
 
     <footer class="footer fixed-bottom text-white" style="margin:0 auto;text-align:center;background:rgba(0,0,0,0.3);">
-        <p>Page made using <a href="https://getbootstrap.com/">Bootstrap</a> by <a
-                href="https://twitter.com/mdo">@mdo</a> and <a href="https://developer.edamam.com/edamam-docs-recipe-api">EDAMAM API</a>.</p>
+        <p>Page made using <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a> and <a href="https://developer.edamam.com/edamam-docs-recipe-api">EDAMAM API</a>.</p>
         <p>
             <a href="#">Back to top</a>
         </p>
     </footer>
-    
+
 
     <!-- Script -->
     <script src="assets/javascript/logic.js"></script>

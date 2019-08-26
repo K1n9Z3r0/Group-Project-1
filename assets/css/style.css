@@ -1,16 +1,10 @@
 body {
-    /* background-image: url("../images/Background.jpeg"); */
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #cccccc;
     margin-bottom: 100px;
-    background: 
-    /* top, transparent red, faked with gradient */ 
-    linear-gradient(
-      rgba(0, 0, 0, 0.20), 
-      rgba(0, 0, 0, 0.20)
-    ),
-    /* bottom, image */
+    background: /* top, transparent red, faked with gradient */
+    linear-gradient( rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.20)), /* bottom, image */
     url(../images/Background.jpeg);
 }
 
@@ -18,42 +12,39 @@ a {
     color: lightgreen;
 }
 
-.jumbotron  {
-    background-color:rgba(41, 36, 36, 0.486);
-}  
+.jumbotron {
+    background-color: rgba(41, 36, 36, 0.486);
+}
 
-#intro  {
-    background-color:rgba(41, 36, 36, 0.486);
+#intro {
+    background-color: rgba(41, 36, 36, 0.486);
 }
+
+#recentText {
+    background-color: beige;
+}
+
 #navbar {
-    background-color:rgba(41, 36, 36, 0.486);
+    background-color: rgba(41, 36, 36, 0.486);
 }
+
 .recipeBox {
-    display:inline-block;
+    display: inline-block;
     padding: 20px;
-    background-attachment:fixed;
+    background-attachment: fixed;
 }
 
 #header {
     color: white;
     text-align: center;
-    border-color:grey;
+    border-color: grey;
     border-style: double;
-    background-color:rgb(7, 6, 6, 0.75);
+    background-color: rgb(7, 6, 6, 0.75);
 }
 
 #searchResults {
     clear: both;
 }
-
-#movie-form {
-    text-align: center;
-    border-color: blue;
-    border-style: double;
-    background-color:rgb(7, 6, 6, 0.75);
-}
-
-
 
 #miscBox {
     color: grey;
@@ -63,24 +54,12 @@ a {
     text-align: left;
     border-color: grey;
     border-style: double;
-    background-color:rgb(7, 6, 6, 0.75);
-}
-
-   
-
-#results2 {
-    color: grey;
-    margin: 5px;
-    float: left;
-    width: 40%;
-    border-color: grey;
-    border-style: double;
-    background-color:rgb(7, 6, 6, 0.75);
+    background-color: rgb(7, 6, 6, 0.75);
 }
 
 #footer {
     color: white;
     text-align: center;
     border-color: grey;
-    background-color:rgb(7, 6, 6, 0.75);
+    background-color: rgb(7, 6, 6, 0.75);
 }
