@@ -34,7 +34,7 @@ function addSearch() {
     for (var i = 0; i < searchArray.length; i++) {
         if (results !== searchArray[i]) {
             searchArray.push(results);
-            
+
 
         }
     }
@@ -51,7 +51,6 @@ $("#searchA").on("click", function(event) {
     event.preventDefault();
     results = $("#searchId").val();
     queryURL = 'https://api.edamam.com/search?q=' + results + '&app_id=' + APIId + '&app_key=' + APIKey + '&from=0&to=10&calories=591-722&time=30';
-    console.log("search: " + results);
     ajaxSearch();
     $("#introDiv").empty();
 
