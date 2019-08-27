@@ -4,6 +4,10 @@ var APIKey = "b90927458c5fa7e1f7b840215bb8a419";
 var APIId = "128b0839";
 var queryURL;
 var results;
+var numResults;
+var calParam;
+var cookTimeParam;
+var restrictionsParam;
 
 
 /* global moment firebase */
@@ -33,6 +37,7 @@ function addSearch() {
     for (var i = 0; i < searchArray.length; i++) {
         if (results !== searchArray[i]) {
             searchArray.push(results);
+            
 
         }
     }
@@ -48,7 +53,7 @@ var searchResults = {
 $("#searchA").on("click", function(event) {
     event.preventDefault();
     results = $("#searchId").val();
-    queryURL = 'https://api.edamam.com/search?q=' + results + '&app_id=' + APIId + '&app_key=' + APIKey + '&from=0&to=2&calories=591-722&time=30';
+    queryURL = 'https://api.edamam.com/search?q=' + results + '&app_id=' + APIId + '&app_key=' + APIKey + '&from=0&to=10&calories=591-722&time=30';
     console.log("search: " + results);
     ajaxSearch();
     $("#introDiv").empty();
