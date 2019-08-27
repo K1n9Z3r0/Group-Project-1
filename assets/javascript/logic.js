@@ -34,7 +34,7 @@ function addSearch() {
     for (var i = 0; i < searchArray.length; i++) {
         if (results !== searchArray[i]) {
             searchArray.push(results);
-            
+
 
         }
     }
