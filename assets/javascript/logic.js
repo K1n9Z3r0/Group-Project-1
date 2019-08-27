@@ -4,10 +4,7 @@ var APIKey = "b90927458c5fa7e1f7b840215bb8a419";
 var APIId = "128b0839";
 var queryURL;
 var results;
-var numResults;
-var calParam;
-var cookTimeParam;
-var restrictionsParam;
+
 
 
 /* global moment firebase */
@@ -90,10 +87,6 @@ function ajaxSearch() {
         method: "GET"
     }).then(function(response) { // We store all of the retrieved data inside of an object called "response"
         // Log the queryURL
-        console.log(queryURL);
-
-        // Log the resulting object
-        console.log(response);
 
         //recipe div holds recipe info
         var recipeDiv = $("<div class='recipe-display'>");
